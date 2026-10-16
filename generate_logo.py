@@ -1,0 +1,266 @@
+import math
+
+def build_svg():
+    svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <!-- Ultra-Luxe Brushed Platinum & Vibrant Chrome Multi-Stop Gradients -->
+    <!-- Canlı Parlak Gümüş & Platin Dış Çember -->
+    <linearGradient id="ringGradPrimary" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="15%" stop-color="#F8FAFC"/>
+      <stop offset="30%" stop-color="#E2E8F0"/>
+      <stop offset="48%" stop-color="#64748B"/>
+      <stop offset="60%" stop-color="#F1F5F9"/>
+      <stop offset="75%" stop-color="#FFFFFF"/>
+      <stop offset="90%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+
+    <!-- Üst Eşmerkezli İnce Yay: Parlak Beyaz/Gümüş Işıltı -->
+    <linearGradient id="topTaperGrad" x1="0%" y1="0%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#CBD5E1" stop-opacity="0.4"/>
+      <stop offset="30%" stop-color="#F8FAFC" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="90%" stop-color="#E2E8F0" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#64748B" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Alt Kavis Yoğun Gümüş Parıltı -->
+    <linearGradient id="bottomArcGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="25%" stop-color="#CBD5E1"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="75%" stop-color="#F1F5F9"/>
+      <stop offset="100%" stop-color="#64748B"/>
+    </linearGradient>
+
+    <!-- B Harfi Canlı Platin Gümüş Degradesi -->
+    <linearGradient id="letterBGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="16%" stop-color="#F8FAFC"/>
+      <stop offset="36%" stop-color="#E2E8F0"/>
+      <stop offset="55%" stop-color="#64748B"/>
+      <stop offset="76%" stop-color="#F1F5F9"/>
+      <stop offset="92%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+
+    <!-- Ş Harfi Canlı Platin Gümüş Degradesi -->
+    <linearGradient id="letterSGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="18%" stop-color="#F8FAFC"/>
+      <stop offset="40%" stop-color="#E2E8F0"/>
+      <stop offset="60%" stop-color="#64748B"/>
+      <stop offset="80%" stop-color="#F1F5F9"/>
+      <stop offset="94%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+
+    <!-- Terazi Parlak Krom Degradesi -->
+    <linearGradient id="scalesGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="35%" stop-color="#F8FAFC"/>
+      <stop offset="70%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+
+    <!-- 3D Soft Ambient Shadow & Specular Glow -->
+    <filter id="logoShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.85"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#FFFFFF" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <g id="master-emblem" transform="translate(-20, -10) scale(0.95)" transform-origin="400 400" filter="url(#logoShadow)">
+
+    <!-- ===================================================================
+         1. ASYMMETRICAL METALLIC CRESCENT RINGS (Görsel 1 Çember Formu)
+         =================================================================== -->
+    <!-- Ana Dış Çember -->
+    <path d="M 390 70 
+             C 580 70 735 220 735 405 
+             C 735 590 585 735 405 735 
+             C 220 735 95 585 95 405 
+             C 95 235 215 95 370 72" 
+          fill="none" 
+          stroke="url(#ringGradPrimary)" 
+          stroke-width="5.5" 
+          stroke-linecap="round"/>
+
+    <!-- Üst Eşmerkezli İnce Yay: 10 yönünden 2 yönüne doğru sivrilerek sonlanır -->
+    <path d="M 290 108 
+             C 430 82 580 115 675 200 
+             C 725 245 750 310 755 380" 
+          fill="none" 
+          stroke="url(#topTaperGrad)" 
+          stroke-width="2.8" 
+          stroke-linecap="round"/>
+
+    <!-- Üstte Çift Hat Sivrilme Ucu (1-2 yönü) -->
+    <path d="M 500 82 
+             C 610 115 695 190 730 295" 
+          fill="none" 
+          stroke="url(#ringGradPrimary)" 
+          stroke-width="3.2" 
+          stroke-linecap="round"/>
+
+    <!-- Alt Kavis Parlama Vurgusu (5-7 yönü arası gümüş parıltı) -->
+    <path d="M 250 715 
+             C 355 745 475 745 585 700" 
+          fill="none" 
+          stroke="url(#bottomArcGrad)" 
+          stroke-width="7" 
+          stroke-linecap="round" 
+          opacity="0.98"/>
+
+    <!-- ===================================================================
+         2. LETTER "B" (Görsel 1 ile Birebir Roman Serif)
+         Gövde kalınlığı net 60px, kavis kalınlıkları 45-55px.
+         =================================================================== -->
+    <g id="letter-B-element">
+      <path d="M 180 165 
+               L 310 165 
+               C 380 165 420 195 420 258 
+               C 420 305 385 342 340 356 
+               C 400 370 440 415 440 488 
+               C 440 572 380 628 290 628 
+               L 180 628 
+               Z 
+               M 240 215 
+               L 240 350 
+               L 305 350 
+               C 345 350 370 330 370 282 
+               C 370 235 345 215 305 215 
+               Z 
+               M 240 395 
+               L 240 578 
+               L 300 578 
+               C 350 578 385 550 385 490 
+               C 385 432 350 395 300 395 
+               Z" 
+            fill="url(#letterBGrad)"/>
+
+      <!-- Sol Üst Tırnak (Serif) -->
+      <polygon points="160,165 240,165 240,174 170,174" fill="url(#letterBGrad)"/>
+      <!-- Sol Alt Tırnak (Serif) -->
+      <polygon points="160,628 240,628 240,619 170,619" fill="url(#letterBGrad)"/>
+    </g>
+
+    <!-- ===================================================================
+         3. LETTER "Ş" (B GİBİ GÜÇLÜ VE KALIN, DOĞRUSAL DÜZGÜN UÇLU SERİF, SAĞDA)
+         - Kalınlığı B'deki gibi güçlü (45-55px gövde/omurga)
+         - Uç kısmı düzgün yapıda: Yatay düz tırnak kolu ve dik, net tırnak ucu (Serif flag)
+         - B ile sıfır çakışma: Sağa konumlu (x: 480 - 700)
+         =================================================================== -->
+    <g id="letter-S-with-scales-isolated">
+      
+      <!-- Ş'nin Üst Kolu ve Gövdesi:
+           Uç kısmı B'deki gibi düzgün, keskin ve doğrusal serif mimarisine sahiptir.
+           Üstte düz yatay çizgi: (535, 205) -> (665, 205)
+           Sağ uçta düz dikey tırnak: (665, 205) -> (665, 275)
+           Tırnak altı düz yatay kesim: (665, 275) -> (642, 275)
+           Tırnak iç açısı: (642, 275) -> (638, 245)
+           İç kavis kalınlığı: B gibi 40-50px dolgun et kalınlığı.
+      -->
+      <path d="M 642 275 
+               L 665 275 
+               L 665 205 
+               L 535 205 
+               C 480 205 448 245 448 300 
+               C 448 360 488 402 555 440 
+               C 512 395 498 355 498 305 
+               C 498 260 522 245 555 245 
+               L 638 245 
+               Z" 
+            fill="url(#letterSGrad)"/>
+
+      <!-- Ş'nin Alt Damla / Ampul Gövdesi:
+           B gibi dolgun et kalınlığı (35-40px duvar kalınlığı).
+           Apex noktası (555, 440)'tan başlayıp teraziyi içine alan görkemli hazne.
+      -->
+      <path d="M 555 440 
+               C 635 450 695 495 695 570 
+               C 695 650 625 688 585 688 
+               C 535 688 480 648 480 570 
+               C 480 500 525 452 555 440 
+               Z 
+               M 555 480 
+               C 532 495 515 528 515 570 
+               C 515 625 550 654 585 654 
+               C 620 654 660 625 660 570 
+               C 660 515 620 482 555 480 
+               Z" 
+            fill="url(#letterSGrad)" 
+            fill-rule="evenodd"/>
+
+      <!-- ===================================================================
+           4. ADALET TERAZİSİ (TAMAMEN Ş'NİN İÇİNDE, B'YE KESİNLİKLE TAŞMAZ)
+           Merkez x=588, y=570. B harfi ile arasında tam 148px güvenli mesafe!
+           =================================================================== -->
+      <g id="justice-scales-strictly-inside-S" transform="translate(588, 570)">
+        <!-- Dikey Merkez Mil & Üst Kubbe Başlığı -->
+        <line x1="0" y1="-72" x2="0" y2="38" stroke="url(#scalesGrad)" stroke-width="3.8" stroke-linecap="round"/>
+        <circle cx="0" cy="-75" r="4.5" fill="#FFFFFF"/>
+        
+        <!-- Taban Denge Kaidesi (B'deki gibi doğrusal mimari) -->
+        <polygon points="-11,38 11,38 7,33 -7,33" fill="url(#scalesGrad)"/>
+        <rect x="-18" y="38" width="36" height="4.5" rx="1.5" fill="url(#letterBGrad)"/>
+
+        <!-- Denge Kolu (Fulcrum Balance Beam - Doğrusal & İnce) -->
+        <path d="M -46 -52 C -23 -57 23 -57 46 -52" fill="none" stroke="url(#scalesGrad)" stroke-width="3.8" stroke-linecap="round"/>
+        <circle cx="-46" cy="-52" r="3" fill="#FFFFFF"/>
+        <circle cx="46" cy="-52" r="3" fill="#FFFFFF"/>
+
+        <!-- Sol Kefe Askı İpleri (3 adet ince ip) -->
+        <line x1="-46" y1="-52" x2="-60" y2="-12" stroke="url(#scalesGrad)" stroke-width="1.5"/>
+        <line x1="-46" y1="-52" x2="-46" y2="-12" stroke="url(#scalesGrad)" stroke-width="1.5"/>
+        <line x1="-46" y1="-52" x2="-32" y2="-12" stroke="url(#scalesGrad)" stroke-width="1.5"/>
+        <!-- Sol Kefe Tabağı -->
+        <path d="M -64 -12 C -64 8 -28 8 -28 -12 Z" fill="url(#scalesGrad)"/>
+
+        <!-- Sağ Kefe Askı İpleri (3 adet ince ip) -->
+        <line x1="46" y1="-52" x2="32" y2="-12" stroke="url(#scalesGrad)" stroke-width="1.5"/>
+        <line x1="46" y1="-52" x2="46" y2="-12" stroke="url(#scalesGrad)" stroke-width="1.5"/>
+        <line x1="46" y1="-52" x2="60" y2="-12" stroke="url(#scalesGrad)" stroke-width="1.5"/>
+        <!-- Sağ Kefe Tabağı -->
+        <path d="M 28 -12 C 28 8 64 8 64 -12 Z" fill="url(#scalesGrad)"/>
+      </g>
+
+      <!-- ===================================================================
+           5. 5 BİÇİMLİ Ş KANCASI (Terazinin Tam Altında)
+           Merkez x=585, y=688. B'deki gibi doğrusal üst çizgi, dolgun gövde.
+           =================================================================== -->
+      <g id="cedilla-5-tail-exact" transform="translate(585, 688)">
+        <path d="M -16 6 
+                 L 24 6 
+                 L 24 18 
+                 L 4 18 
+                 L -2 34 
+                 C 5 30 15 30 24 36 
+                 C 35 44 38 56 32 70 
+                 C 25 82 8 88 -10 86 
+                 C -22 84 -28 75 -29 65 
+                 L -18 63 
+                 C -17 69 -12 75 -4 76 
+                 C 8 77 19 72 23 63 
+                 C 27 52 22 43 13 40 
+                 C 5 37 -4 39 -12 43 
+                 Z" 
+              fill="url(#letterSGrad)"/>
+      </g>
+
+    </g>
+
+  </g>
+</svg>'''
+    return svg
+
+svg_code = build_svg()
+
+with open(r'c:\Users\FURKAN\Desktop\AVbusra\assets\logo-bs.svg', 'w', encoding='utf-8') as f:
+    f.write(svg_code)
+
+with open(r'c:\Users\FURKAN\Desktop\AVbusra\assets\watermark-bs.svg', 'w', encoding='utf-8') as f:
+    f.write(svg_code)
+
+print('Updated both logo-bs.svg and watermark-bs.svg with vibrant metallic silver!')
